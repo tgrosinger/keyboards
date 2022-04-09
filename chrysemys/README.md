@@ -1,6 +1,17 @@
 # Chrysemys
 
-A 34-key keyboard created with [Ergogen](https://ergogen.xyz).
+A 34-key single-board keyboard created with [Ergogen](https://ergogen.xyz).
+
+## Design Goals
+
+- Bluetooth connectivity.
+- Single board, with an outward rotation between the two halves for ergonomic comfort.
+- Using the ZMK firmware, as it has the best bluetooth support at the moment.
+- A focus on keeping the entire keyboard as thin as possible.
+
+## Bill of Materials
+
+Work in progress
 
 ## Inspiration
 
