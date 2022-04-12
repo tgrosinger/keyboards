@@ -1,0 +1,117 @@
+units:
+  cx: 18 # Keycap is 17.5mm wide
+  cy: 17 # Keycap is 16.5mm tall
+  kx: cx + 0.5 # Key spacing horizontal
+  ky: cy + 0.5 # Key spacing vertical
+  angle: 22 # Angle between two halves
+points:
+  mirror:
+    ref: matrix_inner_top
+    distance: 30
+  zones:
+    matrix:
+      rotate: -angle
+      columns:
+        pinky:
+          rows:
+            bottom:
+              bind: [0.5ky, 0, 0, 0]
+            home:
+              bind: [0.5ky, 0.5kx, 0.5ky, 0]
+            top:
+              bind: [0, 0.5kx, 0.5ky, 0]
+        ring:
+          rotate: -6
+          stagger: 7
+          spread: kx + 1
+          rows:
+            bottom:
+              bind: [0.5ky, 0, 0, 5]
+            home:
+              bind: [0.5ky, 0.5kx, 0.5ky, 0.5kx]
+            top:
+              bind: [0, 0.5kx, 0.5ky, 0]
+        middle:
+          rotate: -3
+          stagger: 3
+          spread: kx + 1
+          rows:
+            bottom:
+              bind: [0.5ky, 5, 0, 5]
+            home:
+              bind: [0.5ky, 0.5kx, 0.5ky, 0.5kx]
+            top:
+              bind: [0, 0, 0.5ky, 0]
+        index:
+          stagger: -6
+          rows:
+            bottom:
+              bind: [0.5ky, 5, 0, 0]
+            home:
+              bind: [0.5ky, 0.5kx, 0.5ky, 0.5kx]
+            top:
+              bind: [0, 0, 0.5ky, 5]
+        inner:
+          stagger: -4
+          rows:
+            bottom:
+              bind: [0.5ky, 0, 0, 0]
+            home:
+              bind: [0.5ky, 0.5kx, 0.5ky, 0.5kx]
+            top:
+              bind: [0, 5, 0.5ky, 5]
+      rows:
+        bottom:
+        home:
+        top:
+    thumbfan:
+      anchor:
+        ref: matrix_inner_bottom
+        shift: [-(kx/2), -(ky + 2)]
+      columns:
+        near:
+          rows:
+            thumb:
+              bind: [10, 5, 0, 0]
+        home:
+          rotate: -15
+          spread: 20
+          origin: [-10, -9]
+          rows:
+            thumb:
+              bind: [20, 5, 0, 5]
+        far:
+          rotate: -15
+          spread: 20
+          origin: [-10, -9]
+          rows:
+            thumb:
+              bind: [0, 0, 0, 5]
+      rows:
+        thumb:
+outlines:
+  exports:
+    _key_outline:
+      - type: keys
+        side: both
+        size: 16
+    _center:
+      - type: polygon
+        points:
+          - ref: matrix_inner_top
+          - ref: mirror_matrix_inner_top
+          - ref: mirror_thumbfan_far_thumb
+          - ref: thumbfan_far_thumb
+    _keycaps:
+      - type: keys
+        side: both
+        size: [cx, cy]
+        bound: false
+    _panel:
+      - name: _center
+      - name: _key_outline
+    panel:
+      - name: _panel
+    demo_keycaps:
+      - panel
+      - ^_keycaps

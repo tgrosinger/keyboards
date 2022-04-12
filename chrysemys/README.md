@@ -13,6 +13,10 @@ A 34-key single-board keyboard created with [Ergogen](https://ergogen.xyz).
 
 Work in progress
 
+- 34 [Kailh Low-Profile Mini Choc Switches (CPG1232)](https://www.aliexpress.com/item/4000277394324.html)
+  - Note: These are the "mini" swtiches, which are not compatible with the normal Choc layout.
+- 1 package [Kailh Low-Profile Keycaps](https://www.aliexpress.com/item/32979973961.html)
+
 ## Inspiration
 
 ### GergoPlex
