@@ -3,25 +3,27 @@ units:
   cy: 17 # Keycap is 16.5mm tall
   kx: cx + 0.5 # Key spacing horizontal
   ky: cy + 0.5 # Key spacing vertical
+  pinky_splay: 6
+  ring_splay: 3
   angle: 22 # Angle between two halves
 points:
   mirror:
     ref: matrix_inner_top
-    distance: 30
+    distance: 50
   zones:
     matrix:
-      rotate: -angle
+      rotate: -angle + pinky_splay + ring_splay
       columns:
         pinky:
           rows:
             bottom:
-              bind: [0.5ky, 0, 0, 0]
+              bind: [0.5ky, 1, 0, 0]
             home:
               bind: [0.5ky, 0.5kx, 0.5ky, 0]
             top:
               bind: [0, 0.5kx, 0.5ky, 0]
         ring:
-          rotate: -6
+          rotate: -pinky_splay
           stagger: 7
           spread: kx + 1
           rows:
@@ -32,7 +34,7 @@ points:
             top:
               bind: [0, 0.5kx, 0.5ky, 0]
         middle:
-          rotate: -3
+          rotate: -ring_splay
           stagger: 3
           spread: kx + 1
           rows:
@@ -55,7 +57,7 @@ points:
           stagger: -4
           rows:
             bottom:
-              bind: [0.5ky, 0, 0, 0]
+              bind: [0.5ky, 2, 0, 0]
             home:
               bind: [0.5ky, 0.5kx, 0.5ky, 0.5kx]
             top:
@@ -72,21 +74,21 @@ points:
         near:
           rows:
             thumb:
-              bind: [10, 5, 0, 0]
+              bind: [10, 5, 0, 1]
         home:
           rotate: -15
           spread: 20
           origin: [-10, -9]
           rows:
             thumb:
-              bind: [20, 5, 0, 5]
+              bind: [5, 5, 0, 5]
         far:
           rotate: -15
           spread: 20
           origin: [-10, -9]
           rows:
             thumb:
-              bind: [0, 0, 0, 5]
+              bind: [5, 1, 0, 5]
       rows:
         thumb:
 outlines:
@@ -99,9 +101,36 @@ outlines:
       - type: polygon
         points:
           - ref: matrix_inner_top
+            shift: [cx/2, cy/2-1]
           - ref: mirror_matrix_inner_top
+            shift: [cx/2, cy/2-1]
+          - ref: mirror_thumbfan_home_thumb
+            shift: [-cx/3, cy/2]
           - ref: mirror_thumbfan_far_thumb
+            shift: [cx/2, -cy/2+0.5]
           - ref: thumbfan_far_thumb
+            shift: [cx/2, -cy/2+0.5]
+          - ref: thumbfan_home_thumb
+            shift: [-cx/3, cy/2]
+    _bottom_arc:
+      - type: polygon
+        mirror: true
+        points:
+          - ref: matrix_pinky_bottom
+            shift: [cx/2, -cy/2+0.5]
+          - ref: thumbfan_near_thumb
+            shift: [-cx/2, -cy/2+0.5]
+          - ref: matrix_inner_bottom
+            shift: [cx/2, cy/2]
+          - ref: matrix_pinky_bottom
+            shift: [cx/2, cy/2]
+      - type: circle
+        mirror: true
+        operation: subtract
+        anchor:
+          ref: matrix_pinky_bottom
+          shift: [0, -76.5]
+        radius: 69
     _keycaps:
       - type: keys
         side: both
@@ -110,8 +139,16 @@ outlines:
     _panel:
       - name: _center
       - name: _key_outline
+      - name: _bottom_arc
     panel:
       - name: _panel
+        fillet: 1.5
     demo_keycaps:
       - panel
+      - ^_keycaps
+    demo_center:
+      - _center
+      - ^_keycaps
+    demo_bottom_arc:
+      - _bottom_arc
       - ^_keycaps
