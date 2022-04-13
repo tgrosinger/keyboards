@@ -112,6 +112,22 @@ outlines:
             shift: [cx/2, -cy/2+0.5]
           - ref: thumbfan_home_thumb
             shift: [-cx/3, cy/2]
+      - type: circle
+        operation: subtract
+        anchor:
+          ref:
+            - thumbfan_far_thumb
+            - mirror_thumbfan_far_thumb
+          shift: [0, -38]
+        radius: 31
+      - type: circle
+        operation: subtract
+        anchor:
+          ref:
+            - matrix_inner_top
+            - mirror_matrix_inner_top
+          shift: [0, 32]
+        radius: 31
     _bottom_arc:
       - type: polygon
         mirror: true
