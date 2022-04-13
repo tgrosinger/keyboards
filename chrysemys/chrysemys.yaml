@@ -3,6 +3,7 @@ units:
   cy: 17 # Keycap is 16.5mm tall
   kx: cx + 0.5 # Key spacing horizontal
   ky: cy + 0.5 # Key spacing vertical
+  plate_padding: 2
   pinky_splay: 6
   ring_splay: 3
   angle: 22 # Angle between two halves
@@ -112,7 +113,7 @@ outlines:
             shift: [cx/2, -cy/2+0.5]
           - ref: thumbfan_home_thumb
             shift: [-cx/3, cy/2]
-      - type: circle
+      - type: circle # Bottom center arc
         operation: subtract
         anchor:
           ref:
@@ -120,7 +121,7 @@ outlines:
             - mirror_thumbfan_far_thumb
           shift: [0, -38]
         radius: 31
-      - type: circle
+      - type: circle # Top center arc
         operation: subtract
         anchor:
           ref:
@@ -159,12 +160,36 @@ outlines:
     panel:
       - name: _panel
         fillet: 1.5
+    top_plate:
+      - type: polygon
+        points:
+          - ref: matrix_inner_top
+            shift: [cx/2 + plate_padding, cy/2-1]
+          - ref: mirror_matrix_inner_top
+            shift: [cx/2 + plate_padding, cy/2-1]
+          - ref: mirror_matrix_inner_bottom
+            shift: [cx/2 + plate_padding, -cy/2]
+          - ref: mirror_thumbfan_far_thumb
+            shift: [-cx/2, cy/2 + plate_padding]
+          - ref: thumbfan_far_thumb
+            shift: [-cx/2, cy/2 + plate_padding]
+          - ref: matrix_inner_bottom
+            shift: [cx/2 + plate_padding, -cy/2]
+      - type: circle # Match the top center arc
+        operation: subtract
+        anchor:
+          ref:
+            - matrix_inner_top
+            - mirror_matrix_inner_top
+          shift: [0, 32]
+        radius: 31
     demo_keycaps:
       - panel
       - ^_keycaps
     demo_center:
       - _center
       - ^_keycaps
-    demo_bottom_arc:
-      - _bottom_arc
+    demo_top_plate:
+      - panel
       - ^_keycaps
+      - ^top_plate
