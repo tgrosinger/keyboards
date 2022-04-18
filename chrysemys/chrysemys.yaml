@@ -15,9 +15,20 @@ points:
     matrix:
       key:
         footprints:
-          - type: chocmini
+          chocmini:
+            type: chocmini
             nets:
-              from: "=row_net"
+              from: "=colrow"
+              to: "=row_net"
+          diode:
+            type: diode
+            params:
+              through_hole: false
+            anchor:
+              shift: [0, 4.3]
+              rotate: 180
+            nets:
+              from: "=colrow"
               to: "=column_net"
       rotate: -angle + pinky_splay + ring_splay
       columns:
@@ -100,9 +111,20 @@ points:
         shift: [-(kx/2), -(ky + 2)]
       key:
         footprints:
-          - type: chocmini
+          chocmini:
+            type: chocmini
             nets:
-              from: "=row_net"
+              from: "=colrow"
+              to: "=row_net"
+          diode:
+            type: diode
+            params:
+              through_hole: false
+            anchor:
+              shift: [0, 4.3]
+              rotate: 180
+            nets:
+              from: "=colrow"
               to: "=column_net"
       columns:
         near:
