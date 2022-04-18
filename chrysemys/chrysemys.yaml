@@ -34,8 +34,8 @@ points:
       columns:
         pinky:
           key:
-            column_net: P8
-            mirror.column_net: P13
+            column_net: P5
+            mirror.column_net: P18
           rows:
             bottom:
               bind: [0.5ky, 1, 0, 0]
@@ -48,8 +48,8 @@ points:
           stagger: 7
           spread: kx + 1
           key:
-            column_net: P9
-            mirror.column_net: P14
+            column_net: P6
+            mirror.column_net: P15
           rows:
             bottom:
               bind: [0.5ky, 0, 0, 5]
@@ -62,8 +62,8 @@ points:
           stagger: 3
           spread: kx + 1
           key:
-            column_net: P10
-            mirror.column_net: P15
+            column_net: P7
+            mirror.column_net: P14
           rows:
             bottom:
               bind: [0.5ky, 5, 0, 5]
@@ -74,7 +74,7 @@ points:
         index:
           stagger: -6
           key:
-            column_net: P11
+            column_net: P8
             mirror.column_net: P16
           rows:
             bottom:
@@ -86,8 +86,8 @@ points:
         inner:
           stagger: -4
           key:
-            column_net: P12
-            mirror.column_net: P17
+            column_net: P9
+            mirror.column_net: P10
           rows:
             bottom:
               bind: [0.5ky, 2, 0, 0]
@@ -97,14 +97,14 @@ points:
               bind: [0, 5, 0.5ky, 5]
       rows:
         bottom:
-          row_net: P2
-          mirror.row_net: P5
-        home:
-          row_net: P1
-          mirror.row_net: P4
-        top:
-          row_net: P0
+          row_net: P3
           mirror.row_net: P3
+        home:
+          row_net: P2
+          mirror.row_net: P2
+        top:
+          row_net: P1
+          mirror.row_net: P1
     thumbfan:
       anchor:
         ref: matrix_inner_bottom
@@ -131,8 +131,8 @@ points:
           rows:
             thumb:
               bind: [10, 5, 0, 1]
-              column_net: P10
-              mirror.column_net: P15
+              column_net: P7
+              mirror.column_net: P14
         home:
           rotate: -15
           spread: 20
@@ -140,7 +140,7 @@ points:
           rows:
             thumb:
               bind: [5, 5, 0, 5]
-              column_net: P11
+              column_net: P8
               mirror.column_net: P16
         far:
           rotate: -15
@@ -149,12 +149,12 @@ points:
           rows:
             thumb:
               bind: [5, 1, 0, 5]
-              column_net: P12
-              mirror.column_net: P17
+              column_net: P9
+              mirror.column_net: P10
       rows:
         thumb:
-          row_net: P6
-          mirror.row_net: P7
+          row_net: P4
+          mirror.row_net: P4
 outlines:
   exports:
     _key_outline:
@@ -261,3 +261,14 @@ pcbs:
     outlines:
       main:
         outline: panel
+    footprints:
+      mcu:
+        type: promicro
+        params:
+          orientation: up
+        anchor:
+          ref:
+            - matrix_inner_top
+            - mirror_matrix_inner_top
+          rotate: -90
+          shift: [0, -20]
