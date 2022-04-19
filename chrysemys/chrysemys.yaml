@@ -7,6 +7,12 @@ units:
   pinky_splay: 6
   ring_splay: 3
   angle: 22 # Angle between two halves
+  mounting_hole_radius: 1.5
+  mcu_height: 33
+  mcu_width: 18
+  batt_width: 11.5
+  batt_length: 31.8
+  batt_padding: 1.5
 points:
   mirror:
     ref: matrix_inner_top
@@ -159,34 +165,36 @@ outlines:
   exports:
     _mcu:
       - type: rectangle
-        size: [18, 33]
+        size: [mcu_width, mcu_height]
         anchor:
           ref:
             - matrix_inner_top
             - mirror_matrix_inner_top
           shift:
-            - -9 # Half the width
-            - -32
+            - -mcu_width/2
+            - -mcu_height + 1
     _battery:
       - type: rectangle
-        size: [31.8, 11.5]
+        size: [batt_length, batt_width]
         anchor:
           ref:
-            - matrix_inner_bottom
-            - mirror_matrix_inner_bottom
+            - matrix_inner_top
+            - mirror_matrix_inner_top
           shift:
-            - -15.9 # Half the width
-            - -16.25 # Below the MCU and bat pads
+            - -batt_length/2
+            - -mcu_height - batt_width - 6 # Below the MCU and bat pads
     _battery_cutout:
       - type: rectangle
-        size: [34, 13]
+        size:
+          - batt_length + 2 batt_padding
+          - batt_width + 2 batt_padding
         anchor:
           ref:
-            - matrix_inner_bottom
-            - mirror_matrix_inner_bottom
+            - matrix_inner_top
+            - mirror_matrix_inner_top
           shift:
-            - -17 # Half the width
-            - -17 # Below the MCU and bat pads
+            - -(batt_length + 2 batt_padding)/2 # Half the width
+            - -mcu_height - batt_width - 6 - batt_padding # Below the MCU and bat pads
     _key_outline:
       - type: keys
         side: both
@@ -246,6 +254,38 @@ outlines:
         side: both
         size: [cx, cy]
         bound: false
+    _top_plate_mounting_holes:
+      - type: circle
+        anchor:
+          ref:
+            - thumbfan_home_thumb
+            - thumbfan_far_thumb
+          shift: [0, 3.8 cy]
+        mirror: true
+        radius: mounting_hole_radius
+      - type: circle
+        anchor:
+          ref:
+            - thumbfan_home_thumb
+            - thumbfan_far_thumb
+          shift: [0, cy]
+        mirror: true
+        radius: mounting_hole_radius
+    _battery_mounting_holes:
+      - type: circle
+        anchor:
+          ref:
+            - matrix_inner_bottom
+            - mirror_matrix_inner_bottom
+          shift: [-22, -11]
+        radius: mounting_hole_radius
+      - type: circle
+        anchor:
+          ref:
+            - matrix_inner_bottom
+            - mirror_matrix_inner_bottom
+          shift: [22, -11]
+        radius: mounting_hole_radius
     _panel:
       - _key_outline
       - +_center
@@ -254,6 +294,8 @@ outlines:
     panel:
       - name: _panel
         fillet: 1.5
+      - -_top_plate_mounting_holes
+      - -_battery_mounting_holes
     top_plate:
       - type: polygon
         points:
