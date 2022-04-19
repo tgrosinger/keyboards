@@ -157,6 +157,36 @@ points:
           mirror.row_net: P4
 outlines:
   exports:
+    _mcu:
+      - type: rectangle
+        size: [18, 33]
+        anchor:
+          ref:
+            - matrix_inner_top
+            - mirror_matrix_inner_top
+          shift:
+            - -9 # Half the width
+            - -32
+    _battery:
+      - type: rectangle
+        size: [31.8, 11.5]
+        anchor:
+          ref:
+            - matrix_inner_bottom
+            - mirror_matrix_inner_bottom
+          shift:
+            - -15.9 # Half the width
+            - -16.25 # Below the MCU and bat pads
+    _battery_cutout:
+      - type: rectangle
+        size: [34, 13]
+        anchor:
+          ref:
+            - matrix_inner_bottom
+            - mirror_matrix_inner_bottom
+          shift:
+            - -17 # Half the width
+            - -17 # Below the MCU and bat pads
     _key_outline:
       - type: keys
         side: both
@@ -217,9 +247,10 @@ outlines:
         size: [cx, cy]
         bound: false
     _panel:
-      - name: _center
-      - name: _key_outline
-      - name: _bottom_arc
+      - _key_outline
+      - +_center
+      - +_bottom_arc
+      - -_battery_cutout
     panel:
       - name: _panel
         fillet: 1.5
@@ -256,6 +287,13 @@ outlines:
       - panel
       - ^_keycaps
       - ^top_plate
+    demo_battery:
+      - panel
+      - ^_mcu
+      - ^_keycaps
+      - ^top_plate
+      - ^_battery
+      - ^_battery_cutout
 pcbs:
   chrysemeys:
     outlines:
