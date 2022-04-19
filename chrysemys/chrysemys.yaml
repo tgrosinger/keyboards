@@ -283,17 +283,12 @@ outlines:
     demo_center:
       - _center
       - ^_keycaps
-    demo_top_plate:
-      - panel
-      - ^_keycaps
-      - ^top_plate
     demo_battery:
       - panel
       - ^_mcu
       - ^_keycaps
       - ^top_plate
       - ^_battery
-      - ^_battery_cutout
 pcbs:
   chrysemeys:
     outlines:
