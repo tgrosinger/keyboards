@@ -40,11 +40,21 @@ module.exports = {
         (fp_line (start 7.25 6.75) (end 6.25 6.75) (layer Dwgs.User) (width 0.15))
         (fp_line (start 7.25 6.75) (end 7.25 5.75) (layer Dwgs.User) (width 0.15))
 
-
+        ${''/* diode box marker */}        	 
         (fp_line (start 2.8 -5.35) (end -2.8 -5.35) (layer Dwgs.User) (width 0.15))
         (fp_line (start -2.8 -3.2) (end 2.8 -3.2) (layer Dwgs.User) (width 0.15))
         (fp_line (start 2.8 -3.2) (end 2.8 -5.35) (layer Dwgs.User) (width 0.15))
         (fp_line (start -2.8 -3.2) (end -2.8 -5.35) (layer Dwgs.User) (width 0.15))
+
+        ${''/* diode direction marker */}        	 
+        (fp_line (start 0.35 -4.3) (end 0.35 -3.75) (layer "F.SilkS") (width 0.1))
+        (fp_line (start -0.25 -3.9) (end -0.25 -4.7) (layer "F.SilkS") (width 0.1))
+        (fp_line (start -0.25 -4.3) (end -0.75 -4.3) (layer "F.SilkS") (width 0.1))
+        (fp_line (start 0.35 -4.3) (end 0.35 -4.85) (layer "F.SilkS") (width 0.1))
+        (fp_line (start 0.75 -4.3) (end 0.35 -4.3) (layer "F.SilkS") (width 0.1))
+        (fp_line (start 0.35 -4.3) (end -0.25 -3.9) (layer "F.SilkS") (width 0.1))
+        (fp_line (start -0.25 -4.7) (end 0.35 -4.3) (layer "F.SilkS") (width 0.1))
+
         
         ${''/* middle shaft */}        	 
         (fp_line (start 2.25 2.6) (end 5.8 2.6) (layer Edge.Cuts) (width 0.12))
