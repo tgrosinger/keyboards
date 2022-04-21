@@ -22,20 +22,10 @@ points:
       key:
         footprints:
           chocmini:
-            type: chocmini
+            type: chocmini_with_diode
             nets:
-              from: "=colrow"
+              from: "=column_net"
               to: "=row_net"
-          diode:
-            type: diode
-            params:
-              through_hole: false
-            anchor:
-              shift: [0, 4.3]
-              rotate: 180
-            nets:
-              from: "=colrow"
-              to: "=column_net"
       rotate: -angle + pinky_splay + ring_splay
       columns:
         pinky:
@@ -118,20 +108,10 @@ points:
       key:
         footprints:
           chocmini:
-            type: chocmini
+            type: chocmini_with_diode
             nets:
-              from: "=colrow"
+              from: "=column_net"
               to: "=row_net"
-          diode:
-            type: diode
-            params:
-              through_hole: false
-            anchor:
-              shift: [0, 4.3]
-              rotate: 180
-            nets:
-              from: "=colrow"
-              to: "=column_net"
       columns:
         near:
           rows:
@@ -347,31 +327,50 @@ pcbs:
             - mirror_matrix_inner_top
           rotate: -90
           shift: [0, -16]
-      bat_neg:
+      battery_pads:
+        type: battery_pads
+        nets:
+          neg: GND
+          pos: BATT
+        anchor:
+          ref:
+            - matrix_inner_top
+            - mirror_matrix_inner_top
+          shift: [0, -34]
+      reset_rst:
+        type: pad
+        nets:
+          net: RST
+        params:
+          back: false
+          text: "RST"
+          height: 2
+        anchor:
+          ref:
+            - thumbfan_far_thumb
+            - mirror_thumbfan_far_thumb
+          shift: [-1, 2]
+      reset_gnd:
         type: pad
         nets:
           net: GND
         params:
-          front: true
           back: false
-          text: "bat-"
-          align: "center"
+          text: "GND"
+          height: 2
         anchor:
           ref:
-            - matrix_inner_top
-            - mirror_matrix_inner_top
-          shift: [1.5, -34]
-      bat_pos:
-        type: pad
+            - thumbfan_far_thumb
+            - mirror_thumbfan_far_thumb
+          shift: [1, 2]
+      power:
+        type: slider
         nets:
-          net: RAW
-        params:
-          front: true
-          back: false
-          text: "bat+"
-          align: "center"
+          from: BATT
+          to: RAW
         anchor:
           ref:
-            - matrix_inner_top
-            - mirror_matrix_inner_top
-          shift: [-1.5, -34]
+            - thumbfan_far_thumb
+            - mirror_thumbfan_far_thumb
+          shift: [0, -4]
+          rotate: 180
