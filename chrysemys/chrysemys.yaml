@@ -24,8 +24,8 @@ points:
           chocmini:
             type: chocmini_with_diode
             nets:
-              from: "=column_net"
-              to: "=row_net"
+              from: "=row_net"
+              to: "=column_net"
       rotate: -angle + pinky_splay + ring_splay
       columns:
         pinky:
@@ -337,32 +337,16 @@ pcbs:
             - matrix_inner_top
             - mirror_matrix_inner_top
           shift: [0, -34]
-      reset_rst:
-        type: pad
+      reset:
+        type: two_lead_button
         nets:
-          net: RST
-        params:
-          back: false
-          text: "RST"
-          height: 2
+          from: RST
+          to: GND
         anchor:
           ref:
             - thumbfan_far_thumb
             - mirror_thumbfan_far_thumb
-          shift: [-1, 2]
-      reset_gnd:
-        type: pad
-        nets:
-          net: GND
-        params:
-          back: false
-          text: "GND"
-          height: 2
-        anchor:
-          ref:
-            - thumbfan_far_thumb
-            - mirror_thumbfan_far_thumb
-          shift: [1, 2]
+          shift: [0, 2]
       power:
         type: slider
         nets:
