@@ -16,6 +16,7 @@ Work in progress
 - 34 [Kailh Low-Profile Mini Choc Switches (CPG1232)](https://www.aliexpress.com/item/4000277394324.html)
   - Note: These are the "mini" swtiches, which are not compatible with the normal Choc layout.
 - 1 package [Kailh Low-Profile Keycaps](https://www.aliexpress.com/item/32979973961.html)
+  - Alternatively, the [MBK Choc Keycaps](https://mkultra.click/mbk-choc-keycaps)
 
 ## Inspiration
 
@@ -26,3 +27,9 @@ The [GergoPlex](https://www.gboards.ca/product/gergoplex) is a 36 key keyboard w
 ### Hummingbird
 
 The [Hummingbird layout](https://github.com/PJE66/hummingbird), and [Rufous, the Ergogen recreation](https://github.com/jcmkk3/trochilidae/tree/main/rufous) have been a big help in getting me started with Ergogen and building the layout I'm looking for.
+
+## Credits
+
+### Footprints
+
+- Several footprints used in this project were borrowed from [jcmkk3's Trochildae collection](https://github.com/jcmkk3/trochilidae/tree/main/trochilidae.pretty)
