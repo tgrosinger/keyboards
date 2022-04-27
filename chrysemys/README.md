@@ -11,12 +11,19 @@ A 34-key single-board keyboard created with [Ergogen](https://ergogen.xyz).
 
 ## Bill of Materials
 
-Work in progress
-
-- 34 [Kailh Low-Profile Mini Choc Switches (CPG1232)](https://www.aliexpress.com/item/4000277394324.html)
+- 36 [Kailh Low-Profile Mini Choc Switches (CPG1232)](https://www.aliexpress.com/item/4000277394324.html)
   - Note: These are the "mini" swtiches, which are not compatible with the normal Choc layout.
 - 1 package [Kailh Low-Profile Keycaps](https://www.aliexpress.com/item/32979973961.html)
   - Alternatively, the [MBK Choc Keycaps](https://mkultra.click/mbk-choc-keycaps)
+- 1 Pro-Micro compatible microcontroller. I recommend one with Bluetooth and an integrated battery charger, such as the [nice!nano](https://nicekeyboards.com/nice-nano/).
+- 1 surface mount SPDT sliding switch for the power switch. [LCSC #C128955](https://lcsc.com/product-detail/Slide-Switches_Korean-Hroparts-Elec-K3-1296S-E1_C128955.html) fits the footprint. Alternatively, you can jump the pins on the board and depend on the software standby features.
+- 1 surface mount button for the reset switch. [LCSC #C2888943](https://lcsc.com/product-detail/Tactile-Switches_BZCN-TSA010A2010A02_C2888943.html) fits the footprint. This part is optional. You can also jump the reset pin on the MCU with tweezers or bind to a key in QMK.
+- 1 301230 LiPo battery such as [this one](https://keyhive.xyz/shop/nicenano)
+- Adhesive rubber dome feet
+
+## Center Cover
+
+Work in progress
 
 ## Inspiration
 
