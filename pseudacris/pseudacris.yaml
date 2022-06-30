@@ -1,6 +1,6 @@
 units:
-  cx: 18 # Keycap is 17.5mm wide
-  cy: 17 # Keycap is 16.5mm tall
+  cx: 17.75 # Keycap is 17.75mm wide
+  cy: 16.5 # Keycap is 16.5mm tall
   kx: cx + 0.5 # Key spacing horizontal
   ky: cy + 0.5 # Key spacing vertical
   plate_padding: 2
@@ -20,7 +20,7 @@ points:
   zones:
     matrix:
       key:
-        padding: 18
+        padding: 17
         footprints:
           choc:
             type: choc
@@ -59,7 +59,7 @@ points:
         middle:
           rotate: -ring_splay
           stagger: 3
-          spread: kx + 1
+          spread: kx + 0.5
           key:
             column_net: P7
             mirror.column_net: P14
@@ -72,6 +72,7 @@ points:
               bind: [0, 0, 0.5ky, 0]
         index:
           stagger: -6
+          spread: kx
           key:
             column_net: P8
             mirror.column_net: P16
@@ -84,6 +85,7 @@ points:
               bind: [0, 0, 0.5ky, 5]
         inner:
           stagger: -4
+          spread: kx
           key:
             column_net: P9
             mirror.column_net: P10
@@ -109,6 +111,7 @@ points:
         ref: matrix_inner_bottom
         shift: [-(kx/2), -(ky + 2)]
       key:
+        padding: 17.5
         footprints:
           choc:
             type: choc
@@ -126,7 +129,7 @@ points:
               mirror.column_net: P14
         home:
           rotate: -15
-          spread: 20
+          spread: 18.5
           origin: [-10, -9]
           rows:
             thumb:
@@ -135,7 +138,7 @@ points:
               mirror.column_net: P16
         far:
           rotate: -15
-          spread: 20
+          spread: 18.5
           origin: [-10, -9]
           rows:
             thumb:
