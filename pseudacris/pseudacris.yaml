@@ -1,10 +1,3 @@
-#
-# NOTES:
-#
-# - The thumb key nets are inverted compared to rest
-# - The right half column nets are in a strange order
-#
-
 units:
   cx: 18 # Keycap is 17.5mm wide
   cy: 17 # Keycap is 16.5mm tall
@@ -27,9 +20,12 @@ points:
   zones:
     matrix:
       key:
+        padding: 18
         footprints:
-          chocmini:
-            type: chocmini_with_diode
+          choc:
+            type: choc
+            params:
+              hotswap: true
             nets:
               from: "=row_net"
               to: "=column_net"
@@ -114,11 +110,13 @@ points:
         shift: [-(kx/2), -(ky + 2)]
       key:
         footprints:
-          chocmini:
-            type: chocmini_with_diode
+          choc:
+            type: choc
+            params:
+              hotswap: true
             nets:
-              from: "=column_net"
-              to: "=row_net"
+              from: "=row_net"
+              to: "=column_net"
       columns:
         near:
           rows:
@@ -170,18 +168,6 @@ outlines:
           shift:
             - -batt_length/2
             - -mcu_height - batt_width - 6 # Below the MCU and bat pads
-    _battery_cutout:
-      - type: rectangle
-        size:
-          - batt_length + 2 batt_padding
-          - batt_width + 2 batt_padding
-        anchor:
-          ref:
-            - matrix_inner_top
-            - mirror_matrix_inner_top
-          shift:
-            - -(batt_length + 2 batt_padding)/2 # Half the width
-            - -mcu_height - batt_width - 6 - batt_padding # Below the MCU and bat pads
     _key_outline:
       - type: keys
         side: both
@@ -241,23 +227,6 @@ outlines:
         side: both
         size: [cx, cy]
         bound: false
-    _top_plate_mounting_holes:
-      - type: circle
-        anchor:
-          ref:
-            - thumbfan_home_thumb
-            - thumbfan_far_thumb
-          shift: [0, 3.8 cy]
-        mirror: true
-        radius: mounting_hole_radius
-      - type: circle
-        anchor:
-          ref:
-            - thumbfan_home_thumb
-            - thumbfan_far_thumb
-          shift: [0, cy]
-        mirror: true
-        radius: mounting_hole_radius
     _battery_mounting_holes:
       - type: circle
         anchor:
@@ -277,35 +246,10 @@ outlines:
       - _key_outline
       - +_center
       - +_bottom_arc
-      - -_battery_cutout
     panel:
       - name: _panel
         fillet: 1.5
-      - -_top_plate_mounting_holes
       - -_battery_mounting_holes
-    top_plate:
-      - type: polygon
-        points:
-          - ref: matrix_inner_top
-            shift: [cx/2 + plate_padding, cy/2-1]
-          - ref: mirror_matrix_inner_top
-            shift: [cx/2 + plate_padding, cy/2-1]
-          - ref: mirror_matrix_inner_bottom
-            shift: [cx/2 + plate_padding, -cy/2]
-          - ref: mirror_thumbfan_far_thumb
-            shift: [-cx/2, cy/2 + plate_padding]
-          - ref: thumbfan_far_thumb
-            shift: [-cx/2, cy/2 + plate_padding]
-          - ref: matrix_inner_bottom
-            shift: [cx/2 + plate_padding, -cy/2]
-      - type: circle # Match the top center arc
-        operation: subtract
-        anchor:
-          ref:
-            - matrix_inner_top
-            - mirror_matrix_inner_top
-          shift: [0, 32]
-        radius: 31
     demo_keycaps:
       - panel
       - ^_keycaps
@@ -316,10 +260,9 @@ outlines:
       - panel
       - ^_mcu
       - ^_keycaps
-      - ^top_plate
       - ^_battery
 pcbs:
-  chrysemeys:
+  pseudacris:
     outlines:
       main:
         outline: panel
