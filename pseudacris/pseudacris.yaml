@@ -1,0 +1,367 @@
+#
+# NOTES:
+#
+# - The thumb key nets are inverted compared to rest
+# - The right half column nets are in a strange order
+#
+
+units:
+  cx: 18 # Keycap is 17.5mm wide
+  cy: 17 # Keycap is 16.5mm tall
+  kx: cx + 0.5 # Key spacing horizontal
+  ky: cy + 0.5 # Key spacing vertical
+  plate_padding: 2
+  pinky_splay: 6
+  ring_splay: 3
+  angle: 22 # Angle between two halves
+  mounting_hole_radius: 1.5
+  mcu_height: 33
+  mcu_width: 18
+  batt_width: 11.5
+  batt_length: 31.8
+  batt_padding: 1.5
+points:
+  mirror:
+    ref: matrix_inner_top
+    distance: 50
+  zones:
+    matrix:
+      key:
+        footprints:
+          chocmini:
+            type: chocmini_with_diode
+            nets:
+              from: "=row_net"
+              to: "=column_net"
+      rotate: -angle + pinky_splay + ring_splay
+      columns:
+        pinky:
+          key:
+            column_net: P5
+            mirror.column_net: P18
+          rows:
+            bottom:
+              bind: [0.5ky, 1, 0, 0]
+            home:
+              bind: [0.5ky, 0.5kx, 0.5ky, 0]
+            top:
+              bind: [0, 0.5kx, 0.5ky, 0]
+        ring:
+          rotate: -pinky_splay
+          stagger: 7
+          spread: kx + 1
+          key:
+            column_net: P6
+            mirror.column_net: P15
+          rows:
+            bottom:
+              bind: [0.5ky, 0, 0, 5]
+            home:
+              bind: [0.5ky, 0.5kx, 0.5ky, 0.5kx]
+            top:
+              bind: [0, 0.5kx, 0.5ky, 0]
+        middle:
+          rotate: -ring_splay
+          stagger: 3
+          spread: kx + 1
+          key:
+            column_net: P7
+            mirror.column_net: P14
+          rows:
+            bottom:
+              bind: [0.5ky, 5, 0, 5]
+            home:
+              bind: [0.5ky, 0.5kx, 0.5ky, 0.5kx]
+            top:
+              bind: [0, 0, 0.5ky, 0]
+        index:
+          stagger: -6
+          key:
+            column_net: P8
+            mirror.column_net: P16
+          rows:
+            bottom:
+              bind: [0.5ky, 5, 0, 0]
+            home:
+              bind: [0.5ky, 0.5kx, 0.5ky, 0.5kx]
+            top:
+              bind: [0, 0, 0.5ky, 5]
+        inner:
+          stagger: -4
+          key:
+            column_net: P9
+            mirror.column_net: P10
+          rows:
+            bottom:
+              bind: [0.5ky, 2, 0, 0]
+            home:
+              bind: [0.5ky, 0.5kx, 0.5ky, 0.5kx]
+            top:
+              bind: [0, 5, 0.5ky, 5]
+      rows:
+        bottom:
+          row_net: P3
+          mirror.row_net: P3
+        home:
+          row_net: P2
+          mirror.row_net: P2
+        top:
+          row_net: P1
+          mirror.row_net: P1
+    thumbfan:
+      anchor:
+        ref: matrix_inner_bottom
+        shift: [-(kx/2), -(ky + 2)]
+      key:
+        footprints:
+          chocmini:
+            type: chocmini_with_diode
+            nets:
+              from: "=column_net"
+              to: "=row_net"
+      columns:
+        near:
+          rows:
+            thumb:
+              bind: [10, 5, 0, 1]
+              column_net: P7
+              mirror.column_net: P14
+        home:
+          rotate: -15
+          spread: 20
+          origin: [-10, -9]
+          rows:
+            thumb:
+              bind: [5, 5, 0, 5]
+              column_net: P8
+              mirror.column_net: P16
+        far:
+          rotate: -15
+          spread: 20
+          origin: [-10, -9]
+          rows:
+            thumb:
+              bind: [5, 1, 0, 5]
+              column_net: P9
+              mirror.column_net: P10
+      rows:
+        thumb:
+          row_net: P4
+          mirror.row_net: P4
+outlines:
+  exports:
+    _mcu:
+      - type: rectangle
+        size: [mcu_width, mcu_height]
+        anchor:
+          ref:
+            - matrix_inner_top
+            - mirror_matrix_inner_top
+          shift:
+            - -mcu_width/2
+            - -mcu_height + 1
+    _battery:
+      - type: rectangle
+        size: [batt_length, batt_width]
+        anchor:
+          ref:
+            - matrix_inner_top
+            - mirror_matrix_inner_top
+          shift:
+            - -batt_length/2
+            - -mcu_height - batt_width - 6 # Below the MCU and bat pads
+    _battery_cutout:
+      - type: rectangle
+        size:
+          - batt_length + 2 batt_padding
+          - batt_width + 2 batt_padding
+        anchor:
+          ref:
+            - matrix_inner_top
+            - mirror_matrix_inner_top
+          shift:
+            - -(batt_length + 2 batt_padding)/2 # Half the width
+            - -mcu_height - batt_width - 6 - batt_padding # Below the MCU and bat pads
+    _key_outline:
+      - type: keys
+        side: both
+        size: 16
+    _center:
+      - type: polygon
+        points:
+          - ref: matrix_inner_top
+            shift: [cx/2, cy/2-1]
+          - ref: mirror_matrix_inner_top
+            shift: [cx/2, cy/2-1]
+          - ref: mirror_thumbfan_home_thumb
+            shift: [-cx/3, cy/2]
+          - ref: mirror_thumbfan_far_thumb
+            shift: [cx/2, -cy/2+0.5]
+          - ref: thumbfan_far_thumb
+            shift: [cx/2, -cy/2+0.5]
+          - ref: thumbfan_home_thumb
+            shift: [-cx/3, cy/2]
+      - type: circle # Bottom center arc
+        operation: subtract
+        anchor:
+          ref:
+            - thumbfan_far_thumb
+            - mirror_thumbfan_far_thumb
+          shift: [0, -38]
+        radius: 31
+      - type: circle # Top center arc
+        operation: subtract
+        anchor:
+          ref:
+            - matrix_inner_top
+            - mirror_matrix_inner_top
+          shift: [0, 32]
+        radius: 31
+    _bottom_arc:
+      - type: polygon
+        mirror: true
+        points:
+          - ref: matrix_pinky_bottom
+            shift: [cx/2, -cy/2+0.5]
+          - ref: thumbfan_near_thumb
+            shift: [-cx/2, -cy/2+0.5]
+          - ref: matrix_inner_bottom
+            shift: [cx/2, cy/2]
+          - ref: matrix_pinky_bottom
+            shift: [cx/2, cy/2]
+      - type: circle
+        mirror: true
+        operation: subtract
+        anchor:
+          ref: matrix_pinky_bottom
+          shift: [0, -76.5]
+        radius: 69
+    _keycaps:
+      - type: keys
+        side: both
+        size: [cx, cy]
+        bound: false
+    _top_plate_mounting_holes:
+      - type: circle
+        anchor:
+          ref:
+            - thumbfan_home_thumb
+            - thumbfan_far_thumb
+          shift: [0, 3.8 cy]
+        mirror: true
+        radius: mounting_hole_radius
+      - type: circle
+        anchor:
+          ref:
+            - thumbfan_home_thumb
+            - thumbfan_far_thumb
+          shift: [0, cy]
+        mirror: true
+        radius: mounting_hole_radius
+    _battery_mounting_holes:
+      - type: circle
+        anchor:
+          ref:
+            - matrix_inner_bottom
+            - mirror_matrix_inner_bottom
+          shift: [-22, -11]
+        radius: mounting_hole_radius
+      - type: circle
+        anchor:
+          ref:
+            - matrix_inner_bottom
+            - mirror_matrix_inner_bottom
+          shift: [22, -11]
+        radius: mounting_hole_radius
+    _panel:
+      - _key_outline
+      - +_center
+      - +_bottom_arc
+      - -_battery_cutout
+    panel:
+      - name: _panel
+        fillet: 1.5
+      - -_top_plate_mounting_holes
+      - -_battery_mounting_holes
+    top_plate:
+      - type: polygon
+        points:
+          - ref: matrix_inner_top
+            shift: [cx/2 + plate_padding, cy/2-1]
+          - ref: mirror_matrix_inner_top
+            shift: [cx/2 + plate_padding, cy/2-1]
+          - ref: mirror_matrix_inner_bottom
+            shift: [cx/2 + plate_padding, -cy/2]
+          - ref: mirror_thumbfan_far_thumb
+            shift: [-cx/2, cy/2 + plate_padding]
+          - ref: thumbfan_far_thumb
+            shift: [-cx/2, cy/2 + plate_padding]
+          - ref: matrix_inner_bottom
+            shift: [cx/2 + plate_padding, -cy/2]
+      - type: circle # Match the top center arc
+        operation: subtract
+        anchor:
+          ref:
+            - matrix_inner_top
+            - mirror_matrix_inner_top
+          shift: [0, 32]
+        radius: 31
+    demo_keycaps:
+      - panel
+      - ^_keycaps
+    demo_center:
+      - _center
+      - ^_keycaps
+    demo_battery:
+      - panel
+      - ^_mcu
+      - ^_keycaps
+      - ^top_plate
+      - ^_battery
+pcbs:
+  chrysemeys:
+    outlines:
+      main:
+        outline: panel
+    footprints:
+      mcu:
+        type: promicro
+        params:
+          orientation: up
+        anchor:
+          ref:
+            - matrix_inner_top
+            - mirror_matrix_inner_top
+          rotate: -90
+          shift: [0, -16]
+      battery_pads:
+        type: battery_pads
+        nets:
+          neg: GND
+          pos: BATT
+        anchor:
+          ref:
+            - matrix_inner_top
+            - mirror_matrix_inner_top
+          shift: [0, -34]
+      reset:
+        type: two_lead_button
+        nets:
+          from: RST
+          to: GND
+        anchor:
+          ref:
+            - thumbfan_far_thumb
+            - mirror_thumbfan_far_thumb
+          shift: [0, 2]
+      power:
+        type: slider
+        nets:
+          from: BATT
+          to: RAW
+        anchor:
+          ref:
+            - thumbfan_far_thumb
+            - mirror_thumbfan_far_thumb
+          shift: [0, -4]
+          rotate: 180
