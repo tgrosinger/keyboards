@@ -1,3 +1,10 @@
+#
+# NOTES:
+#
+# - The thumb key nets are inverted compared to rest
+# - The right half column nets are in a strange order
+#
+
 units:
   cx: 18 # Keycap is 17.5mm wide
   cy: 17 # Keycap is 16.5mm tall

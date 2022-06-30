@@ -23,7 +23,13 @@ A 34-key single-board keyboard created with [Ergogen](https://ergogen.xyz).
 
 ## Center Cover
 
-Work in progress
+After use, I have decided to instead place the battery under the nice!nano and omit the center cover. This does leave a hole in the middle of the keyboard, but maybe we just call it a handle.
+
+## Firmware
+
+- [Docs](https://zmk.dev/docs/development/build-flash#building-from-zmk-config-folder) on building firmware using the `zmk-config` from this repo.
+  - Note: It still needs to be built from inside the `/app` directory in the ZMK repo.
+  - `west build -b nice_nano_v2 -- -DSHIELD=chrysemys -DZMK_CONFIG="/workspaces/zmk-config/config"`
 
 ## Inspiration
 
