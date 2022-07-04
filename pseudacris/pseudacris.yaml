@@ -23,7 +23,7 @@ points:
         padding: 17
         footprints:
           choc:
-            type: choc
+            type: choc_with_diode
             params:
               hotswap: true
             nets:
@@ -37,11 +37,12 @@ points:
             mirror.column_net: P18
           rows:
             bottom:
-              bind: [0.5ky, 1, 0, 0]
+              #     [t, r, b, l]
+              bind: [0.5ky, 1, 0, 2.5]
             home:
-              bind: [0.5ky, 0.5kx, 0.5ky, 0]
+              bind: [0.5ky, 0.5kx, 0.5ky, 2.5]
             top:
-              bind: [0, 0.5kx, 0.5ky, 0]
+              bind: [0.25, 0.5kx, 0.5ky, 2.5]
         ring:
           rotate: -pinky_splay
           stagger: 7
@@ -55,7 +56,7 @@ points:
             home:
               bind: [0.5ky, 0.5kx, 0.5ky, 0.5kx]
             top:
-              bind: [0, 0.5kx, 0.5ky, 0]
+              bind: [0, 0.5ky, 0.5ky, 2.5]
         middle:
           rotate: -ring_splay
           stagger: 3
@@ -69,7 +70,7 @@ points:
             home:
               bind: [0.5ky, 0.5kx, 0.5ky, 0.5kx]
             top:
-              bind: [0, 0, 0.5ky, 0]
+              bind: [0, 0.5ky, 0.5ky, 2.5]
         index:
           stagger: -6
           spread: kx
@@ -114,7 +115,7 @@ points:
         padding: 17.5
         footprints:
           choc:
-            type: choc
+            type: choc_with_diode
             params:
               hotswap: true
             nets:
@@ -175,56 +176,60 @@ outlines:
       - type: keys
         side: both
         size: 16
-    _center:
+    _center_positive:
       - type: polygon
         points:
-          - ref: matrix_inner_top
-            shift: [cx/2, cy/2-1]
-          - ref: mirror_matrix_inner_top
-            shift: [cx/2, cy/2-1]
+          - ref: matrix_middle_top
+            shift: [cx/2, cy/2+1]
+          - ref: mirror_matrix_middle_top
+            shift: [cx/2, cy/2+1]
+          - ref: mirror_matrix_middle_bottom
+            shift: [cx/2, 0]
           - ref: mirror_thumbfan_home_thumb
-            shift: [-cx/3, cy/2]
+            shift: [-cx/2, 0]
           - ref: mirror_thumbfan_far_thumb
-            shift: [cx/2, -cy/2+0.5]
+            shift: [cx/2, -cy/2]
           - ref: thumbfan_far_thumb
-            shift: [cx/2, -cy/2+0.5]
+            shift: [cx/2, -cy/2]
           - ref: thumbfan_home_thumb
-            shift: [-cx/3, cy/2]
-      - type: circle # Bottom center arc
-        operation: subtract
+            shift: [-cx/2, 0]
+          - ref: matrix_middle_bottom
+            shift: [cx/2, 0]
+    _bottom_center_arc:
+      - type: circle
         anchor:
           ref:
             - thumbfan_far_thumb
             - mirror_thumbfan_far_thumb
-          shift: [0, -38]
-        radius: 31
-      - type: circle # Top center arc
-        operation: subtract
+          shift: [0, -78.5]
+        radius: 70
+    _top_center_arc:
+      - type: circle
         anchor:
           ref:
             - matrix_inner_top
             - mirror_matrix_inner_top
-          shift: [0, 32]
-        radius: 31
+          shift: [0, 116.8]
+        radius: 100
     _bottom_arc:
       - type: polygon
         mirror: true
         points:
           - ref: matrix_pinky_bottom
-            shift: [cx/2, -cy/2+0.5]
+            shift: [cx/2, -cy/2]
           - ref: thumbfan_near_thumb
-            shift: [-cx/2, -cy/2+0.5]
+            shift: [-cx/2, -cy/2]
           - ref: matrix_inner_bottom
             shift: [cx/2, cy/2]
           - ref: matrix_pinky_bottom
-            shift: [cx/2, cy/2]
+            shift: [cx/2-1, cy/2]
       - type: circle
         mirror: true
         operation: subtract
         anchor:
           ref: matrix_pinky_bottom
-          shift: [0, -76.5]
-        radius: 69
+          shift: [-0.7, -74.3]
+        radius: 67
     _keycaps:
       - type: keys
         side: both
@@ -247,7 +252,9 @@ outlines:
         radius: mounting_hole_radius
     _panel:
       - _key_outline
-      - +_center
+      - +_center_positive
+      - -_top_center_arc
+      - -_bottom_center_arc
       - +_bottom_arc
     panel:
       - name: _panel
@@ -257,8 +264,9 @@ outlines:
       - panel
       - ^_keycaps
     demo_center:
-      - _center
+      - _center_positive
       - ^_keycaps
+      - ^_bottom_arc
     demo_battery:
       - panel
       - ^_mcu
@@ -299,7 +307,7 @@ pcbs:
           ref:
             - thumbfan_far_thumb
             - mirror_thumbfan_far_thumb
-          shift: [0, 2]
+          shift: [0, 0]
       power:
         type: slider
         nets:
@@ -309,5 +317,5 @@ pcbs:
           ref:
             - thumbfan_far_thumb
             - mirror_thumbfan_far_thumb
-          shift: [0, -4]
+          shift: [0, -5.5]
           rotate: 180
