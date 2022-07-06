@@ -39,13 +39,13 @@ module.exports = {
       (fp_line (start -2.732 3.326) (end -2.732 5.476) (layer "Dwgs.User") (width 0.15))
 
       ${''/* diode direction marker */}        	 
-      (fp_line (start -0.282 4.426) (end 0.318 4.026) (layer "F.SilkS") (width 0.1))
-      (fp_line (start 0.318 4.826) (end -0.282 4.426) (layer "F.SilkS") (width 0.1))
-      (fp_line (start -0.282 4.426) (end -0.282 3.876) (layer "F.SilkS") (width 0.1))
-      (fp_line (start -0.282 4.426) (end -0.282 4.976) (layer "F.SilkS") (width 0.1))
-      (fp_line (start -0.682 4.426) (end -0.282 4.426) (layer "F.SilkS") (width 0.1))
-      (fp_line (start 0.318 4.426) (end 0.818 4.426) (layer "F.SilkS") (width 0.1))
-      (fp_line (start 0.318 4.026) (end 0.318 4.826) (layer "F.SilkS") (width 0.1))
+      (fp_line (start -0.282 4.426) (end 0.318 4.026) (layer "B.SilkS") (width 0.1))
+      (fp_line (start 0.318 4.826) (end -0.282 4.426) (layer "B.SilkS") (width 0.1))
+      (fp_line (start -0.282 4.426) (end -0.282 3.876) (layer "B.SilkS") (width 0.1))
+      (fp_line (start -0.282 4.426) (end -0.282 4.976) (layer "B.SilkS") (width 0.1))
+      (fp_line (start -0.682 4.426) (end -0.282 4.426) (layer "B.SilkS") (width 0.1))
+      (fp_line (start 0.318 4.426) (end 0.818 4.426) (layer "B.SilkS") (width 0.1))
+      (fp_line (start 0.318 4.026) (end 0.318 4.826) (layer "B.SilkS") (width 0.1))
 
       ${''/* diode pads */}
       (pad "" smd rect (at 1.776 4.401 ${ p.rot }) (size 1.1 1.9) (layers "B.Cu" "B.Paste" "B.Mask"))
