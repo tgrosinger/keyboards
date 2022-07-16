@@ -10,3 +10,9 @@ This keyboard is materially extremely similar to Chrysemys, with the intention t
 - Use hotswap sockets for the switches.
 - Move the switches closer together, so there is less of a gap between key caps.
 - Use an integrated MCU, based on the nRFMicro rather than a nice!nano.
+
+## Building Firmware
+
+The firmware for this keyboard can be found on my [ZMK fork](https://github.com/tgrosinger/zmk/tree/tgrosinger-keyboards/app/boards/arm/pseudacris). Instructions for building can be found in the readme in that directory.
+
+If you would like to build your own key layout for this keyboard, follow the instruction for [Building from `zmk-config` folder](https://zmk.dev/docs/development/build-flash#building-from-zmk-config-folder).

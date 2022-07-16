@@ -12,9 +12,17 @@ A 34-key single-board keyboard created with [Ergogen](https://ergogen.xyz). Powe
 
 This keyboard is my first attempt at using Ergogen, and my first custom keyboard, so it will likely be rough around the edges. I predict there will be future keyboards listed here which refine the ideas implemented in this board.
 
+### Pseudacris
+
+[Source Files](https://git.sr.ht/~tgrosinger/keyboards/tree/main/item/pseudacris)
+
+A 34-key single-board keyboard created with [Ergogen](https://ergogen.xyz). Powered by an integrated MCU, derived directly from the [nRFMicro](https://github.com/joric/nrfmicro/).
+
+This keyboard is almost identical to Chrysemys, but switches to normal Choc switches, adds hotswap, and moves the switches closer together.
+
 ### Future Keyboards
 
-I'd like to eventually work towards putting the MCU directly on the keyboard PCB. It however does not seem wise to do this until I have a functional keyboard under my belt.
+Eventually I would like to build a keyboard which has an integrated trackpoint, trackpad, or trackball. It will likely be based on Pseudacris.
 
 ## License
 
