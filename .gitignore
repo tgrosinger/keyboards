@@ -1,3 +1,6 @@
 */output/points/
 */output/source/
 */output/*/demo*
+*/output/pcbs/fp-info-cache
+*/output/pcbs/*.kicad_pro
+*/output/pcbs/*.kicad_prl
